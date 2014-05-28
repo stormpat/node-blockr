@@ -97,32 +97,32 @@ class Blockr extends Api
     params = @ApiParams().transaction.unconfirmed + tx
     @data(callback, params)
 
-  ## Allow for multiple addresses
-  ## Allow for confirmations parameters
+  ## TODO: Allow for multiple addresses
+  ## TODO: Allow for confirmations parameters
   addressInfo: (addr, callback) ->
     params = @ApiParams().address.info + addr
     @data(callback, params)
 
-  ## Allow for multiple addresses
-  ## Allow for confirmations parameters
+  ## TODO: Allow for multiple addresses
+  ## TODO: Allow for confirmations parameters
   addressBalance: (addr, callback) ->
     params = @ApiParams().address.balance + addr
     @data(callback, params)
 
-  ## Allow for multiple addresses
-  ## Allow for confirmations parameters
+  ## TODO: Allow for multiple addresses
+  ## TODO: Allow for confirmations parameters
   addressTx: (addr, callback) ->
     params = @ApiParams().address.transaction + addr
     @data(callback, params)
 
-  ## Allow for multiple addresses
-  ## Allow for confirmations parameters
+  ## TODO: Allow for multiple addresses
+  ## TODO: Allow for confirmations parameters
   addressUnSpent: (addr, callback) ->
     params = @ApiParams().address.unspent + addr
     @data(callback, params)
 
-  ## Allow for multiple addresses
-  ## Allow for confirmations parameters
+  ## TODO: Allow for multiple addresses
+  ## TODO: Allow for confirmations parameters
   addressUnConf: (addr, callback) ->
     params = @ApiParams().address.unconfirmed + addr
     @data(callback, params)
