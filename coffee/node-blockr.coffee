@@ -1,23 +1,17 @@
 
+## Base class for some setup logic.
 class Api
 
-  ## The backend API constructor. Will set the current instance
-  ## currency, and call the backend with that value.
-  ## Basically it just sets the currency, and delegates the logic further.
-
+  ## Set currency, and the base uri for http requests.
   constructor: (currency) ->
     @currency = currency
     @ApisetBase(currency)
 
   ## This method will set the current instance base URI for the backend.
-  ## Will be called when the client queries the API.
-
   Apiendpoint: ->
     "http://" + @ApisetBase() + @ApiParams().uri + @ApiParams().version
 
-  ## Just some logic to set the bas URI. This method is called only once,
-  ## from the class constructor.
-
+  ## Logic for the base uri to be the one the user chooses.
   ApisetBase: ->
     switch @currency.toLowerCase()
       when "bitcoin" then "btc"
@@ -28,11 +22,9 @@ class Api
       when "megacoin" then "mec"
       else console.log "Currency '#{@currency}' not supported"
 
-  ## The hardcoded values, building blocks for the diffrent Api endpoints.
-  ## When new currencies become available its easy to add them.
-
+  ## The REST api endpoints.
   ApiParams: ->
-    api = {
+    {
     version: "api/v1/"
     uri: ".blockr.io/"
     exchange: "exchangerate/current/"
@@ -54,10 +46,7 @@ class Api
       unconfirmed: "address/unconfirmed/"
     }
 
-  ## This method calls the actual API. As default params theres always
-  ## the 'params' that is the current instance base uri. Additional params
-  ## are the query for endpoints, and extra for additional query parameters.
-
+## Exposes the api search methods.
 class Blockr extends Api
 
   constructor: (currency) ->
@@ -73,6 +62,69 @@ class Blockr extends Api
 
   coinInfo: (callback) ->
     params = @ApiParams().coin.info
+    @data(callback, params)
+
+  exchange: (callback) ->
+    params = @ApiParams().exchange
+    @data(callback, params)
+
+  blockInfo: (block, callback) ->
+    params = @ApiParams().block.info + block
+    @data(callback, params)
+
+  ## TODO: ALLOW MULTIPLE PARAMETERS
+  blockTx: (block, callback) ->
+    params = @ApiParams().block.transaction + block
+    @data(callback, params)
+
+  ## TODO: ALLOW MULTIPLE PARAMETERS
+  blockTxRaw: (block, callback) ->
+    params = @ApiParams().block.raw + block
+    @data(callback, params)
+
+  ## TODO: ALLOW FOR VOUTS
+  transaction: (tx, callback) ->
+    params = @ApiParams().transaction.info + tx
+    @data(callback, params)
+
+  ## TODO: ALLOW FOR VOUTS
+  transactionRaw: (tx, callback) ->
+    params = @ApiParams().transaction.raw + tx
+    @data(callback, params)
+
+  ## TODO: ALLOW FOR VOUTS
+  transactionUnconf: (tx, callback) ->
+    params = @ApiParams().transaction.unconfirmed + tx
+    @data(callback, params)
+
+  ## Allow for multiple addresses
+  ## Allow for confirmations parameters
+  addressInfo: (addr, callback) ->
+    params = @ApiParams().address.info + addr
+    @data(callback, params)
+
+  ## Allow for multiple addresses
+  ## Allow for confirmations parameters
+  addressBalance: (addr, callback) ->
+    params = @ApiParams().address.balance + addr
+    @data(callback, params)
+
+  ## Allow for multiple addresses
+  ## Allow for confirmations parameters
+  addressTx: (addr, callback) ->
+    params = @ApiParams().address.transaction + addr
+    @data(callback, params)
+
+  ## Allow for multiple addresses
+  ## Allow for confirmations parameters
+  addressUnSpent: (addr, callback) ->
+    params = @ApiParams().address.unspent + addr
+    @data(callback, params)
+
+  ## Allow for multiple addresses
+  ## Allow for confirmations parameters
+  addressUnConf: (addr, callback) ->
+    params = @ApiParams().address.unconfirmed + addr
     @data(callback, params)
 
 module.exports = Blockr
