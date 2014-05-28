@@ -1,6 +1,6 @@
 {
   "name": "node-blockr",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A wrapper for the Blockr.io API",
   "contributors": [
     {
