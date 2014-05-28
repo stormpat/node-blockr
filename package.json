@@ -1,0 +1,34 @@
+{
+  "name": "node-blockr",
+  "version": "0.1.0",
+  "description": "A wrapper for the Blockr.io API",
+  "contributors": [
+    {
+      "name": "Patrik Storm",
+      "email": "storm.patrik@gmail.com"
+    }
+  ],
+  "homepage": "https://github.com/stormpat/node-blockr",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stormpat/node-blockr.git"
+  },
+  "directories": {
+    "lib": "./lib"
+  },
+  "main":"./lib/node-blockr",
+  "engines": {
+    "node": ">= 0.10.x"
+  },
+  "scripts": {
+  },
+  "dependencies": {
+    "restler": "3.2.2",
+    "request": "2.*"
+  },
+  "devDependencies": {
+    "gulp": "^3.6.2",
+    "gulp-coffee": "^1.4.3",
+    "gulp-util": "^2.2.14"
+  }
+}
