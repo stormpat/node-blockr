@@ -23,7 +23,6 @@
   "scripts": {
   },
   "dependencies": {
-    "restler": "3.2.2",
     "request": "2.*"
   },
   "devDependencies": {
