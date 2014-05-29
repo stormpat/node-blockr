@@ -50,13 +50,13 @@ class Api
 class Blockr extends Api
 
   constructor: (currency) ->
-    new Blockr(currency) unless this instanceof Blockr
     super(currency)
     @rest = require("request")
     @url = @Apiendpoint()
 
   isArray: (object) ->
-    Array.isArray || ( value ) -> return {}.toString.call( value ) is '[object Array]'
+    Array.isArray || ( value ) ->
+      {}.toString.call( value ) is '[object Array]'
 
   data: (callback, params="", optional_params="") ->
     params = params + optional_params
