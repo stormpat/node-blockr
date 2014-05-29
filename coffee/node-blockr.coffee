@@ -55,6 +55,9 @@ class Blockr extends Api
     @rest = require("request")
     @url = @Apiendpoint()
 
+  isArray: (object) ->
+    Array.isArray || ( value ) -> return {}.toString.call( value ) is '[object Array]'
+
   data: (callback, params="", optional_params="") ->
     params = params + optional_params
     @rest @url + params, (error, response, body) ->
@@ -72,13 +75,17 @@ class Blockr extends Api
     params = @ApiParams().block.info + block
     @data(callback, params)
 
-  ## TODO: ALLOW MULTIPLE PARAMETERS
   blockTx: (block, callback) ->
+    if @isArray() block
+      block.toString()
+
     params = @ApiParams().block.transaction + block
     @data(callback, params)
 
-  ## TODO: ALLOW MULTIPLE PARAMETERS
   blockTxRaw: (block, callback) ->
+    if @isArray() block
+      block.toString()
+
     params = @ApiParams().block.raw + block
     @data(callback, params)
 

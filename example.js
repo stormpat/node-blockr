@@ -39,11 +39,16 @@ coin.blockInfo(1337, function(response) {
 });
 
 // Get a blocks transactions
-coin.blockTx(1337, function(response) {
+// You can pass in multiple values and get them all in one HTTP call.
+// You can do this by:
+// a) pass in a a string of multiple id's
+// b) pass in an array of values
+coin.blockTx(['1337', 2000], function(response) {
   console.log(response);
 });
 
 // Get a blocks transactions, raw bitcoind format data
+// Accepts multiple values. See above.
 coin.blockTxRaw('last', function(response) {
   console.log(response.data.tx);
 });
